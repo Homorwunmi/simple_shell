@@ -1,35 +1,36 @@
 #include "shell.h"
 
 /**
- * execute_builtin_commands - Handle execution of certain built-in commands.
- * @args: An array of user-provided command arguments.
+ * handle_builtin_commands - Handle execution of  built-in commands.
+ * @args: An array of command arguments.
  * @name: Name of the shell program (unused in current logic).
- * @buf: Buffer containing the user's input.
+ * @buf: Buffer containing the command.
  *
  * Return: 1 if a built-in command was executed, 0 otherwise.
  */
-int execute_builtin_commands(char **args, char *name, char *buf)
+int handle_builtin_commands(char **args, char *name, char *buf)
 {
-	int line = 0;
-	int index = 0;
+	int is_exec = 0;
+	int env_index = 0;
 	int status = 0; /* Default exit status */
 
 	(void)name;
 
 	if (args[0] == NULL)
 	{
-		return (line);
+		return (is_exec);
 	}
 
+	/*check for "exit" command*/
 	if (strcmp(args[0], "exit") == 0)
 	{
-		if (args[1]) /* If an argument is provided to exit */
+		if (args[1])
 		{
-			status = atoi(args[1]); /* Convert string to integer */
+			status = atoi(args[1]); /* Convert  to integer */
 			if (status < 0)
 			{
 				write(1, "Invalid exit status\n", 20);
-				return (line); /* Continue shell execution */
+				return (is_exec); /* Continue shell execution */
 			}
 		}
 		free(args);
@@ -38,14 +39,14 @@ int execute_builtin_commands(char **args, char *name, char *buf)
 	}
 	else if (strcmp(args[0], "env") == 0)
 	{
-		while (environ[index] != NULL)
+		while (environ[env_index] != NULL)
 		{
-			write(1, environ[index], strlen(environ[index]));
+			write(1, environ[index], strlen(environ[env_index]));
 			write(1, "\n", 1);
-			index++;
+			env_index++;
 		}
 		free(args);
-		line  = 1;
+		is_exec  = 1;
 	}
-	return (line);
+	return (is_exec);
 }
