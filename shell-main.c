@@ -1,78 +1,97 @@
 #include "shell.h"
 
 /**
- * prompt_if_interactive - Display prompt if in interactive mode.
+ * display_prompt - Display shell prompt if in interactive mode.
  * @mode: Mode of operation.
  */
-void prompt_if_interactive(int mode)
+void display_prompt(int mode)
 {
 	if (mode)
 		write(1, "$ ", 2);
 }
 
 /**
- * handle_invalid_command - Handle when command is invalid.
- * @args: Arguments.
+ * manage_invalid_command - Handle when command is not found.
+ * @args: Arguments array.
  * @progname: Program name.
- * @count: Command count.
+ * @count: Command execution count.
  *
  * Return: Error number.
  */
-int handle_invalid_command(char **args, char *progname, int count)
+int manage_invalid_command(char **args, char *progname, int count)
 {
-	char cmdc = count + '0';
+	char cmd_count = count + '0';
 
-	print_error(progname, cmdc, args[0]);
+	print_error(progname, cmd_count, args[0]);
 	free(args);
 	return (127);
 }
 
+/**
+ * process_shell - Process shell operations and handle commands
+ * @buffer: Input buffer.
+ * @argv: Argument values.
+ * @count: Commmand count.
+ *
+ * Return: Error number.
+ */
+int process_shell(char *buffer, char **argv, int count)
+{
+	char **args = NULL, *command_full_path = NULL;
+
+	truncate_at_comment(buffer);
+	args = tokenize(buffer);
+	if (!args[0])
+	{
+		free(args);
+		return (0);
+	}
+	if (access(args[0], X_OK) == -1 &&
+			excecute_builtin_commands(args, argv[0], buffer) != 1)
+	{
+		command_full_path = find_command_path(get_env_path(), args[0]);
+		if (!command_full_path)
+		{
+			return (manage_invalid_command(args, argv[0], count));
+		}
+		execute_full_command(args, argv, command_full_path);
+		return (0);
+	}
+	execute_command(args, argv);
+	return (0);
+}
+
 
 /**
- * main - Main function for shell.
+ * main - Main function for the shell.
  * @argc: Argument count.
  * @argv: Argument values.
  *
- * Return: Error number.
+ * Return: Exit status.
  */
 int main(int argc, char **argv)
 {
 	int mode = isatty(0), count = 0;
-	char *buffer = NULL, **args = NULL, *fullcmd = NULL;
-	size_t buff_Size = 0;
-	ssize_t num;
+	char *buffer = NULL;
+	size_t buffer_size = 0;
+	ssize_t num_length;
 
 	(void)argc;
 	while (1)
 	{
 		count++;
-		prompt_if_interactive(mode);
-		num = getline(&buffer, &buff_Size, stdin);
-		if (num == -1)
+		display_prompt(mode);
+		num_length = getline(&buffer, &buffer_size, stdin);
+		if (num_length == -1)
 		{
 			free(buffer);
 			exit(errno);
 		}
-		truncate_at_comment(buffer);
-		args = tokenize(buffer);
-		if (!args[0])
+		if (process_shell(buffer, argv, count))
 		{
-			free(args);
-			continue;
+			free(buffer);
+			exit(127);
 		}
-		if (access(args[0], X_OK) == -1 &&
-				execute_builtin_commands(args, argv[0], buffer) != 1)
-		{
-			fullcmd = find_command_path(get_env_path(), args[0]);
-			if (!fullcmd)
-			{
-				errno = handle_invalid_command(args, argv[0], count);
-				continue;
-			}
-			execute_full_command(args, argv, fullcmd);
-			continue;
-		}
-		execute_command(args, argv);
 	}
-	return (errno);
+	return (0);
 }
