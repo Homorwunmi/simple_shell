@@ -19,7 +19,7 @@
 /* Global Variables */
 extern char **environ;
 void print_env(void);
-void truncate_at_comment(char *input);
+void remove_comment(char *line);
 char **tokenize(char *input_str);
 int execute_full_command(char **args, char **argv, char *command_path);
 char *string_dup(char *src);
