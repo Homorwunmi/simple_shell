@@ -13,7 +13,7 @@ void remove_comment(char *line)
 
 	while (line[txt])
 	{
-		if (txt > 0 && linet[txt] == '#' && line[txt - 1] != ' ')
+		if (txt > 0 && line[txt] == '#' && line[txt - 1] != ' ')
 		{
 			line[txt] = '\0';
 			break;
