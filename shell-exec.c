@@ -29,7 +29,7 @@ int run_command(char **cmd_args, char **cmd_argv)
 	{
 		wait(&cmd_status);
 		if (WIFEXITED(cmd_status))
-			cmd_status = WEXITSTATUS(status);
+			cmd_status = WEXITSTATUS(cmd_status);
 
 		errno = cmd_status;
 
