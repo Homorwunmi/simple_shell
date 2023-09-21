@@ -46,7 +46,7 @@ int process_builtin_commands(char **args, char *buffer);
 void _start(void);
 
 /* functions to print errors */
-void free_string_array(int size, char *strings[]);
+void free_str_array(int total, char *string_set[]);
 void display_custom_error(char *prog_name, int cmd_seq, char *user_cmd);
 void output_string(char *txt);
 int output_char(char char_to_display);
