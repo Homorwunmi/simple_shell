@@ -36,7 +36,7 @@ void output_string(char *txt)
  * Return: The number of bytes written.
  */
 
-int output_char(char char_to_display)
+int output_char(char character_to_display)
 {
-	return (write(2, &char_to_dispaly, 1));
+	return (write(2, &character_to_display, 1));
 }
