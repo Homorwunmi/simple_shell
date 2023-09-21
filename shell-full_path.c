@@ -1,72 +1,74 @@
 #include "shell.h"
 
 /**
- * tokenize_directories - Tokenizes the directories string into an array.
- * @directories: A colon-separated string of directories.
- * @dir_tokens: An array to store the tokens.
+ * tokenize_directory_paths - Divides the directories string into an array.
+ * @paths: A colon-separated string of directories.
+ * @path_tokens: An array to store the resulting tokens.
+ *
  * Return: The number of tokens.
  */
-int tokenize_directories(char *directories, char **dir_tokens)
+int tokenize_directory_paths(char *paths, char **path_tokens)
 {
-	int index = 0;
+	int idx = 0;
 	char *token = NULL;
 
-	token = strtok(directories, ":");
+	token = strtok(paths, ":");
 
 	while (token)
 	{
-		dir_tokens[index++] = token;
+		path_tokens[idx++] = token;
 		token = strtok(NULL, ":");
 	}
-	dir_tokens[index] = NULL;
-	return (index);
+	path_tokens[idx] = NULL;
+	return (idx);
 }
 
 /**
- * find_command_path - Searches for a valid path of the
- * command in provided directories.
- * @directories: A colon-separated string of directories in
- * which to search for the command.
- * @command: The command name to search for.
- * Return: A dynamically allocated string with the
- * full path to the command or NULL if not found.
+ * find_cmd_path - Identifies the valid path of the
+ * command in given directories.
+ * @paths: A colon-separated string of directories in
+ * search for the command.
+ * @cmd: The command name to identify.
+ *
+ * Return: A dynamically allocated string showing the
+ * full path to the command or NULL if unavailable.
  */
-char *find_command_path(char *directories, char *command)
+char *find_cmd_path(char *paths, char *cmd)
 {
-	int num_tokens;
-	int index;
-	size_t path_length;
-	char **dir_tokens = NULL, *pathname = NULL;
+	int token_count;
+	int idx;
+	size_t path_size;
+	char **path_tokens = NULL, *pathname = NULL;
 
-	if (!directories)
+	if (!paths)
 		return (NULL);
-	directories = strchr(directories, '=');
+	paths = strchr(paths, '=');
 
-	if (directories)
-		directories++;
-	dir_tokens = malloc(sizeof(char *) * 40);
+	if (paths)
+		paths++;
+	path_tokens = malloc(sizeof(char *) * 40);
 
-	if (!dir_tokens)
+	if (!path_tokens)
 		return (NULL);
 
-	num_tokens = tokenize_directories(directories, dir_tokens);
+	token_count = tokenize_directory_paths(paths, path_tokens);
 
-	for (index = 0; index < num_tokens; index++)
+	for (idx = 0; idx < token_count; idx++)
 	{
-		path_length = strlen(dir_tokens[index]) + strlen(command) + 2;
-		pathname = malloc(path_length);
+		path_size = strlen(path_tokens[idx]) + strlen(cmd) + 2;
+		pathname = malloc(path_size);
 
 		if (!pathname)
 			continue;
-		sprintf(pathname, "%s/%s", dir_tokens[index], command);
+		sprintf(pathname, "%s/%s", path_tokens[idx], cmd);
 
 		if (access(pathname, X_OK) == 0)
 		{
-			free(dir_tokens);
+			free(path_tokens);
 			return (pathname);
 		}
 		free(pathname);
 	}
-	free(dir_tokens);
+	free(path_tokens);
 	return (NULL);
 }
