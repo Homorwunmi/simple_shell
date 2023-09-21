@@ -54,10 +54,10 @@ int process_shell(char *buffer, char **argv, int count)
 		{
 			return (manage_invalid_command(args, argv[0], count));
 		}
-		run_full_cmd(args, argv, full_cmd_path);
+		run_full_cmd(args, argv, command_full_path);
 		return (0);
 	}
-	run_command(cmd_args, cmd_argv);
+	run_command(args, argv);
 	return (0);
 }
 
