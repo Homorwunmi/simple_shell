@@ -1,20 +1,20 @@
 #include "shell.h"
 
 /**
- * free_string_array - Frees a dynamically allocated array of strings.
- * @size: Number of elements in the array.
- * @strings: Array of dynamically allocated strings to be freed.
+ * free_str_array - Frees memory of a dynamically allocated string set.
+ * @total: Total number of elements in the array.
+ * @string_set: Array of dynamically allocated strings to be freed.
  */
-void free_string_array(int size, char *strings[])
+void free_str_array(int total, char *string_set[])
 {
-	int a;
+	int i;
 
-	if (strings)
+	if (string_set)
 	{
-		for (a = 0; a < size; a++)
+		for (i = 0; i < total; i++)
 		{
-			free(strings[a]);
+			free(string_set[i]);
 		}
-		free(strings);
+		free(string_set);
 	}
 }
