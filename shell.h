@@ -36,7 +36,7 @@ int manage_invalid_command(char **args, char *progname, int count);
 void display_prompt(int mode);
 int process_shell(char *buffer, char **argv, int count);
 char *find_command_path(char *directories, char *command);
-char *get_env_path(void);
+char *fetch_path_env(void);
 int execute_full_command(char **args, char **argv, char *command_path);
 int execute_command(char **args, char **argv);
 int handle_builtin_commands(char **args, char *progname, char *buffer);
