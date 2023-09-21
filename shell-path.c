@@ -1,19 +1,22 @@
 #include "shell.h"
 
 /**
- * get_env_path - Retrieves and duplicates the environment PATH.
- * Return: A string of the PATH variable or NULL if not found.
+ * fetch_path_env - Retrieves and clones the environment's PATH.
+ * Return: A string representing the PATH variable or NULL if absent.
  */
-char *get_env_path(void)
+char *fetch_path_env(void)
 {
-	int a;
-	char *duplicate = NULL;
+	int idx;
+	char *clonedPath = NULL;
 
-	for (a = 0; environ[a] != NULL; a++)
+	for (idx = 0; environ[idx] != NULL; idx++)
 	{
-		if (strncmp(environ[a], "PATH", 4) == 0)
-		duplicate = strdup(environ[a]);
+		if (compare_strings(environ[a], "PATH", 4) == 0)
+		{
+			clonedPath = string_dup(&environ[idx][5]);
+			break; /*Exit loop once PATH is found*/
+		}
 	}
 	/*Free this return value if it's not NULL */
-	return (duplicate);
+	return (clonedPath);
 }
