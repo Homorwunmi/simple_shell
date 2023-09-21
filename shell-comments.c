@@ -1,28 +1,28 @@
 #include "shell.h"
 
 /**
- * truncate_at_comment - Truncates the string at the first unescaped
- * comment character (#).
- * @input: The string in which to search and truncate at the comment character.
- * If # is preceded by a non-space character, it's considered a comment.
+ * remove_comment - Removes comment within a given input string
+ * comments are detected by the character (#).
+ * @line: The input string to be cleaned from comments.
+ * An unescaped # character is considered a comment.
  * Otherwise, it's treated as a regular character.
  */
-void truncate_at_comment(char *input)
+void remove_comment(char *line)
 {
-	int text = 0;
+	int txt = 0;
 
-	while (input[text])
+	while (line[txt])
 	{
-		if (text > 0 && input[text] == '#' && input[text - 1] != ' ')
+		if (txt > 0 && linet[txt] == '#' && line[txt - 1] != ' ')
 		{
-			input[text] = '\0';
+			line[txt] = '\0';
 			break;
 		}
-		if (input[text] == '#')
+		if (line[txt] == '#')
 		{
-			input[text] = '\0';
+			line[txt] = '\0';
 			break;
 		}
-		text++;
+		txt++;
 	}
 }
