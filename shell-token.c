@@ -1,16 +1,16 @@
 #include "shell.h"
 
 /**
- * tokenize - Splits a string into tokens based on delimiters.
- * @input: The input string to be tokenized.
+ * tokenize - Divides a string into tokens based on delimiters.
+ * @input_str: The source string to be divided.
  * Return: An array of pointers to the tokens.
  */
 
-char **tokenize(char *input)
+char **tokenize(char *input_str)
 {
 	const int MAX_TOKENS = 25;
 	char **tokens = NULL;
-	int index = 0;
+	int idx = 0;
 	char *token = NULL;
 	char *delimiter = " \n";
 
@@ -19,13 +19,13 @@ char **tokenize(char *input)
 	if (!tokens)
 		return (NULL);
 
-	token = strtok(input, delimiter);
+	token = strtok(input_str, delimiter);
 
-	while (token && index < MAX_TOKENS - 1)
+	while (token && idx < MAX_TOKENS - 1)
 	{
-		tokens[index++] = token;
+		tokens[idx++] = token;
 		token = strtok(NULL, delimiter);
 	}
-	tokens[index] = NULL;
+	tokens[idx] = NULL;
 	return (tokens);
 }
