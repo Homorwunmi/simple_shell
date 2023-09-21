@@ -22,7 +22,7 @@ int manage_invalid_command(char **args, char *progname, int count)
 {
 	char cmd_count = count + '0';
 
-	print_error(progname, cmd_count, args[0]);
+	display_error(progname, cmd_count, args[0]);
 	free(args);
 	return (127);
 }
@@ -39,7 +39,7 @@ int process_shell(char *buffer, char **argv, int count)
 {
 	char **args = NULL, *command_full_path = NULL;
 
-	truncate_at_comment(buffer);
+	remove_comment(buffer);
 	args = tokenize(buffer);
 	if (!args[0])
 	{
@@ -47,17 +47,17 @@ int process_shell(char *buffer, char **argv, int count)
 		return (0);
 	}
 	if (access(args[0], X_OK) == -1 &&
-			excecute_builtin_commands(args, argv[0], buffer) != 1)
+			handle_builtin_commands(args, argv[0], buffer) != 1)
 	{
-		command_full_path = find_command_path(get_env_path(), args[0]);
+		command_full_path = find_cmd_path(get_env_path(), args[0]);
 		if (!command_full_path)
 		{
 			return (manage_invalid_command(args, argv[0], count));
 		}
-		execute_full_command(args, argv, command_full_path);
+		run_full_cmd(cmd_args, cmd_argv, full_cmd_path);
 		return (0);
 	}
-	execute_command(args, argv);
+	run_command(cmd_args, cmd_argv);
 	return (0);
 }
 
