@@ -50,6 +50,6 @@ void _start(void);
 void free_str_array(int total, char *string_set[]);
 void display_custom_error(char *prog_name, int cmd_seq, char *user_cmd);
 void output_string(char *txt);
-int output_char(char char_to_display);
+int output_char(char character_to_display);
 
 #endif /* SHELL_H */
