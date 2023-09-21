@@ -39,7 +39,7 @@ int tokenize_directory_paths(char *paths, char **path_tokens);
 char *find_cmd_path(char *paths, char *cmd);
 char *fetch_path_env(void);
 int execute_full_command(char **args, char **argv, char *command_path);
-int execute_command(char **args, char **argv);
+int run_command(char **cmd_args, char **cmd_argv);
 int handle_builtin_commands(char **args, char *progname, char *buffer);
 void print_environment(char **env);
 void execute_builtin_env(char **env);
