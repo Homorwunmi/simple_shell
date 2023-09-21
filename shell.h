@@ -20,7 +20,7 @@
 extern char **environ;
 void print_env(void);
 void truncate_at_comment(char *input);
-char **tokenize(char *input);
+char **tokenize(char *input_str);
 int execute_full_command(char **args, char **argv, char *command_path);
 char *string_dup(char *src);
 int compare_strings(char *s1, char *s2, size_t n);
