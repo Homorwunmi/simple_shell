@@ -41,7 +41,7 @@ int handle_builtin_commands(char **args, char *name, char *buf)
 	{
 		while (environ[env_index] != NULL)
 		{
-			write(1, environ[index], strlen(environ[env_index]));
+			write(1, environ[env_index], strlen(environ[env_index]));
 			write(1, "\n", 1);
 			env_index++;
 		}
