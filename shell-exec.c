@@ -1,40 +1,41 @@
 #include "shell.h"
 
 /**
- * execute_command - Executes a specified command.
- * @args: The command to execute
- * (typically the first element of the user arguments).
- * @argv: Array of command line arguments used for error reporting.
- * Return: Status of the executed command or error code.
+ * run_command - Executes a specified command.
+ * @cmd_args: The command to start
+ * (commonly the primary element of the user's input arguments).
+ * @cmd_argv: Array of command line arguments useful for error notifications.
+ *
+ * Return: Status of the initiated command or error code.
  */
-int execute_command(char **args, char **argv)
+int run_command(char **cmd_args, char **cmd_argv)
 {
-	pid_t num;
-	int status;
+	pid_t child_pid;
+	int cmd_status;
 
-	num = fork();
-	if (num < 0)
+	child_pid = fork();
+	if (child_pid < 0)
 	{
-		perror(argv[0]);
+		perror(cmd_argv[0]);
 		exit(-1);
 	}
-	else if (num == 0)
+	else if (child_pid == 0)
 	{
-		execve(args[0], args, environ);
-		perror(argv[0]);
+		execve(cmd_args[0], cmd_args, environ);
+		perror(cmd_argv[0]);
 		exit(2);
 	}
 	else
 	{
-		wait(&status);
-		if (WIFEXITED(status))
-			status = WEXITSTATUS(status);
+		wait(&cmd_status);
+		if (WIFEXITED(cmd_status))
+			cmd_status = WEXITSTATUS(status);
 
-		errno = status;
+		errno = cmd_status;
 
-		/* Free the dynamically allocated array of strings */
-		free(args);
+		/* Release memory for the dynamically allocated string array */
+		free(cmd_args);
 	}
 
-	return (status);
+	return (cmd_status);
 }
