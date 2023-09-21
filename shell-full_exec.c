@@ -29,7 +29,7 @@ int run_full_cmd(char **cmd_args, char **cmd_argv, char *full_cmd_path)
 	else
 	{
 		wait(&cmd_status);
-		if (WIFEXITED(status))
+		if (WIFEXITED(cmd_status))
 			cmd_status = WEXITSTATUS(cmd_status);
 
 		errno = cmd_status;
