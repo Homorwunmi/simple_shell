@@ -48,7 +48,7 @@ void _start(void);
 
 /* functions to print errors */
 void free_str_array(int total, char *string_set[]);
-void display_custom_error(char *prog_name, int cmd_seq, char *user_cmd);
+void display_error(char *prog_name, int cmd_seq, char *user_cmd);
 void output_string(char *txt);
 int output_char(char character_to_display);
 
