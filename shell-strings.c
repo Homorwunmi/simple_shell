@@ -40,7 +40,7 @@ char *string_dup(char *src)
 	return (NULL);
 
 	for (idx = 0; src[idx]; idx++)
-	dup_str[idx] = str[idx];
+	dup_str[idx] = src[idx];
 	dup_str[idx] = '\0';
 
 	return (dup_str);
