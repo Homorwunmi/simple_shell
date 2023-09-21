@@ -11,7 +11,7 @@ char *fetch_path_env(void)
 
 	for (idx = 0; environ[idx] != NULL; idx++)
 	{
-		if (compare_strings(environ[a], "PATH", 4) == 0)
+		if (compare_strings(environ[idx], "PATH", 4) == 0)
 		{
 			clonedPath = string_dup(&environ[idx][5]);
 			break; /*Exit loop once PATH is found*/
