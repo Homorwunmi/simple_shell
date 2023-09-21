@@ -47,8 +47,8 @@ void _start(void);
 
 /* functions to print errors */
 void free_string_array(int size, char *strings[]);
-void print_error(char *prog_name, int cmd_count, char *cmd);
-void print_string(char *str);
-int print_char(char character);
+void display_custom_error(char *prog_name, int cmd_seq, char *user_cmd);
+void output_string(char *txt);
+int output_char(char char_to_display);
 
 #endif /* SHELL_H */
