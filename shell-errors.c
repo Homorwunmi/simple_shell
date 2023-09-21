@@ -1,42 +1,42 @@
 #include "shell.h"
 
 /**
- * print_error - Prints a custom error message to standard error.
+ * display_error - Outputs a custom error message to standard error.
  * @prog_name: Name of the program.
- * @cmd_count: Command count.
- * @cmd: Command input by the user.
+ * @cmd_seq: Command count.
+ * @user_cmd: Command entered by the user.
  */
 
-void print_error(char *prog_name, int cmd_count, char *cmd)
+void display_error(char *prog_name, int cmd_seq, char *user_cmd)
 {
-	print_string(prog_name);
-	print_string(": ");
-	print_char(cmd_count + '0');
-	print_string(": ");
-	print_string(cmd);
-	print_string(": not found\n");
+	output_string(prog_name);
+	output_string(": ");
+	output_char(cmd_seq + '0');
+	output_string(": ");
+	output_string(user_cmd);
+	output_string(": not found\n");
 }
 
 /**
- * print_string - Prints a string.
- * @str: The string to be printed.
+ * output_string - Prints a string.
+ * @txt: The string to be printed.
  */
 
-void print_string(char *str)
+void output_string(char *txt)
 {
-	while (*str)
+	while (*txt)
 	{
-		print_char(*str++);
+		output_char(*txt++);
 	}
 }
 
 /**
- * print_char - Prints a character to standard error.
- * @character: The character to be printed.
+ * output_char - Prints a character to standard error.
+ * @char_to_display: The character to be printed.
  * Return: The number of bytes written.
  */
 
-int print_char(char character)
+int output_char(char char_to_display)
 {
-	return (write(2, &character, 1));
+	return (write(2, &char_to_dispaly, 1));
 }
