@@ -30,7 +30,7 @@ int compare_strings(char *s1, char *s2, size_t n)
 char *string_dup(char *src)
 {
 	int idx, length;
-	char *duplicate;
+	char *dup_str;
 
 	length = strlen(src);
 	dup_str = malloc(sizeof(char) * (length + 1));
@@ -39,7 +39,7 @@ char *string_dup(char *src)
 	if (!dup_str)
 	return (NULL);
 
-	for idx = 0; src[a]; idx++)
+	for (idx = 0; src[idx]; idx++)
 	duplicate[idx] = str[idx];
 	duplicate[idx] = '\0';
 
