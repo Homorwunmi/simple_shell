@@ -9,7 +9,7 @@ void ReportEnvError(char **cmd_tokens)
 {
 	char errorMsg[300] = "";
 
-	_strcpy(errorMsg, "env issue: '");
+	copy_strings(errorMsg, "env issue: '");
 	_strcat(errorMsg, cmd_tokens[1]);
 	_strcat(errorMsg, "': Directory or file not found");
 	write(STDOUT_FILENO, errorMsg, _strlen(errorMsg));
