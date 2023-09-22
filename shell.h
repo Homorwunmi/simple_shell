@@ -52,6 +52,10 @@ char *_strcat(char *destination, const char *source);
 char *copy_string(char *target, const char *original);
 int char_is_delimiter(char *ch, const char *delims);
 char *modified_strtok(char *str, const char *delims);
+int SetEnvVar(char **args);
+int ModifyEnv(char *newVal, char **args);
+int UnsetEnv(char **args);
+int RunBuiltinCmds(char **args);
 
 /* functions to print errors */
 void free_str_array(int total, char *string_set[]);
