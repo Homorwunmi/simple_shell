@@ -15,6 +15,7 @@
 #include <sys/stat.h>
 
 #define MAX_INPUT_LENGTH 100
+#define MAX_LINE 1024
 
 /* Global Variables */
 extern char **environ;
@@ -56,6 +57,8 @@ int SetEnvVar(char **args);
 int ModifyEnv(char *newVal, char **args);
 int UnsetEnv(char **args);
 int RunBuiltinCmds(char **args);
+int custom_exit(char **args);
+int print_env(char **args);
 
 /* functions to print errors */
 void free_str_array(int total, char *string_set[]);
