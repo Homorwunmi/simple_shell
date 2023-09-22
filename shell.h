@@ -47,6 +47,9 @@ void print_environment(char **env);
 void execute_builtin_env(char **env);
 int process_builtin_commands(char **args, char *buffer);
 void _start(void);
+size_t calc_strlen(const char *str);
+char *_strcat(char *destination, const char *source);
+char *copy_string(char *target, const char *original);
 
 /* functions to print errors */
 void free_str_array(int total, char *string_set[]);
