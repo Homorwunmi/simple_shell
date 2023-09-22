@@ -19,6 +19,8 @@
 /* Global Variables */
 extern char **environ;
 void print_env(void);
+void ReportEnvError(char **cmd_tokens);
+int display_environment(char **input_tokens);
 void remove_comment(char *line);
 char **tokenize(char *input_str);
 int execute_full_command(char **args, char **argv, char *command_path);
