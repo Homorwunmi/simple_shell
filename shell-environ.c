@@ -33,7 +33,7 @@ int display_environment(char **input_tokens)
 	}
 	while (environ[idx] != NULL)
 	{
-		write(1, environ[idx], _strlen(environ[idx]));
+		write(1, environ[idx],calc _strlen(environ[idx]));
 		write(1, "\n", 1);
 		idx++;
 	}
