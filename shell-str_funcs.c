@@ -8,15 +8,15 @@
  */
 size_t calc_strlen(const char *str)
 {
-    size_t count = 0;
+	size_t count = 0;
 
-    if (!str)
-        return 0;
+	if (!str)
+	return (0);
 
-    while (*str++)
-        count++;
+	while (*str++)
+	count++;
 
-    return count;
+	return (count);
 }
 
 /**
@@ -28,21 +28,21 @@ size_t calc_strlen(const char *str)
  */
 char *_strcat(char *destination, const char *source)
 {
-    char *initial_dest = destination;
+	char *initial_dest = destination;
 
-    if (!destination)
-        return NULL;
-    
-    if (!source)
-        return destination;
+	if (!destination)
+	return (NULL);
 
-    while (*destination)
-        destination++;
+	if (!source)
+	return (destination);
 
-    while ((*destination++ = *source++))
-        ;
+	while (*destination)
+	destination++;
 
-    return initial_dest;
+	while ((*destination++ = *source++))
+	;
+
+	return (initial_dest);
 }
 
 /**
@@ -54,13 +54,13 @@ char *_strcat(char *destination, const char *source)
  */
 char *copy_string(char *target, const char *original)
 {
-    char *initial_target = target;
+	char *initial_target = target;
 
-    if (!original || !target)
-        return NULL;
+	if (!original || !target)
+	return (NULL);
 
-    while ((*target++ = *original++))
-        ;
+	while ((*target++ = *original++))
+	;
 
-    return initial_target;
+	return (initial_target);
 }
