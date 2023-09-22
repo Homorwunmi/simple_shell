@@ -18,7 +18,7 @@ int SetEnvVar(char **args)
 	}
 	while (environ[idx])
 	{
-		if (strncmp(environ[idx], args[1], _strlen(args[1])) == 0)
+		if (strncmp(environ[idx], args[1],calc_strlen(args[1])) == 0)
 		{
 			free(environ[idx]);
 			strcpy(environ[idx], args[1]);
