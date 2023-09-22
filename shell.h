@@ -58,7 +58,7 @@ int ModifyEnv(char *newVal, char **args);
 int UnsetEnv(char **args);
 int RunBuiltinCmds(char **args);
 int custom_exit(char **args);
-int print_env(char **args);
+int print_env(char **tokens);
 
 /* functions to print errors */
 void free_str_array(int total, char *string_set[]);
