@@ -61,7 +61,7 @@ int ModifyEnv(char *newVal, char **args)
 	while (*tempEnv)
 	{
 		if (strncmp(*tempEnv, args[1], calc_strlen(args[1])) == 0 &&
-				(*tempEnv)[_strlen(args[1])] == '=')
+				(*tempEnv)[calc_strlen(args[1])] == '=')
 		{
 			*tempEnv = newVal;
 			return (1);
@@ -88,7 +88,7 @@ int UnsetEnv(char **args)
 	}
 	while (environ[idx])
 	{
-		if (strncmp(environ[idx], args[1], _strlen(args[1])) == 0)
+		if (strncmp(environ[idx], args[1], calc_strlen(args[1])) == 0)
 			break;
 		idx++;
 	}
