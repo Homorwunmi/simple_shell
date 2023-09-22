@@ -60,7 +60,7 @@ int ModifyEnv(char *newVal, char **args)
 	tempEnv = environ;
 	while (*tempEnv)
 	{
-		if (strncmp(*tempEnv, args[1], _strlen(args[1])) == 0 &&
+		if (strncmp(*tempEnv, args[1], calc_strlen(args[1])) == 0 &&
 				(*tempEnv)[_strlen(args[1])] == '=')
 		{
 			*tempEnv = newVal;
