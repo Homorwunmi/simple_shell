@@ -33,7 +33,7 @@ int SetEnvVar(char **args)
 	if (args[2])
 		strcat(newEnvVar, args[2]);
 
-	newEnvPtr = malloc(_strlen(newEnvVar) + 1);
+	newEnvPtr = malloc(calc_strlen(newEnvVar) + 1);
 	if (!newEnvPtr)
 	{
 		write(STDERR_FILENO, "Setting failed", 16);
