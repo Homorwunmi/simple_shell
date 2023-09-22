@@ -12,8 +12,8 @@ void ReportEnvError(char **cmd_tokens)
 	_strcpy(errorMsg, "env issue: '");
 	_strcat(errorMsg, cmd_tokens[1]);
 	_strcat(errorMsg, "': Directory or file not found");
-	write(STDOUT_FILLENO, errorMsg, _strlen(errorMsg));
-	write(STDOUT_FILENO, "\N", 1);
+	write(STDOUT_FILENO, errorMsg, _strlen(errorMsg));
+	write(STDOUT_FILENO, "\n", 1);
 }
 
 /**
