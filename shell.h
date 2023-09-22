@@ -50,6 +50,8 @@ void _start(void);
 size_t calc_strlen(const char *str);
 char *_strcat(char *destination, const char *source);
 char *copy_string(char *target, const char *original);
+int char_is_delimiter(char *ch, const char *delims);
+char *modified_strtok(char *str, const char *delims);
 
 /* functions to print errors */
 void free_str_array(int total, char *string_set[]);
