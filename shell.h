@@ -19,7 +19,7 @@
 
 /* Global Variables */
 extern char **environ;
-void _env(void);
+void print_env(void);
 void ReportEnvError(char **cmd_tokens);
 int display_environment(char **input_tokens);
 void remove_comment(char *line);
@@ -59,7 +59,7 @@ int ModifyEnv(char *newVal, char **args);
 int UnsetEnv(char **args);
 int RunBuiltinCmds(char **args);
 int custom_exit(char **args);
-int print_env(char **args);
+int display_env(char **args);
 
 /* functions to print errors */
 void free_str_array(int total, char *string_set[]);
