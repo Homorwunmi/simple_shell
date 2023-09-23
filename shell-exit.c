@@ -28,6 +28,5 @@ int custom_exit(char **args)
 		}
 	}
 
-	exit(exit_status);
+	exit(status);
 }
-
