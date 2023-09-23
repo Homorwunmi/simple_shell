@@ -13,7 +13,7 @@ int SetEnvVar(char **args)
 
 	if (!args[1])
 	{
-		display_env(args);
+		display_environment(args);
 		return (1);
 	}
 	while (environ[idx])
@@ -117,7 +117,7 @@ int RunBuiltinCmds(char **args)
 	char *builtinCmds[] = {"setenv", "env", "exit", "unsetenv"};
 	typedef int (*BuiltinCmdFunc)(char **);
 	BuiltinCmdFunc builtinCmdFunctions[5] = {SetEnvVar,
-		display_env, custom_exit, UnsetEnv};
+		display_environment, custom_exit, UnsetEnv};
 
 	for (idx = 0; idx < 4; idx++)
 	{
