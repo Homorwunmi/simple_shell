@@ -13,7 +13,7 @@ int SetEnvVar(char **args)
 
 	if (!args[1])
 	{
-		print_env(args);
+		display_env(args);
 		return (1);
 	}
 	while (environ[idx])
