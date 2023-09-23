@@ -25,6 +25,7 @@ int display_environment(char **input_tokens);
 void remove_comment(char *line);
 char **tokenize(char *input_str);
 int execute_full_command(char **args, char **argv, char *command_path);
+int compareStrings(const char *s1, const char *s2);
 char *string_dup(char *src);
 int compare_strings(char *s1, char *s2, size_t n);
 int handle_builtin_commands(char **args, char *name, char *buf);
