@@ -13,7 +13,7 @@ int custom_exit(char **args)
 	/* If an exit status is provided, validate and set it.*/
 	if (args[1] != NULL)
 	{
-		if (compare_strings(args[1], "0") == 0)
+		if (compareStrings(args[1], "0") == 0)
 		{
 			status = 0;
 		}
